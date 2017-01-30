@@ -332,7 +332,8 @@ static struct device_resource cam_resources[] = {
 };
 #endif
 
-#if defined(CONFIG_CAMERA_OV5647_PI) || defined(CONFIG_CAMERA_IMX219_PI)
+#if defined(CONFIG_CAMERA_OV5647_PI) || defined(CONFIG_CAMERA_IMX219_PI) ||\
+    defined(CONFIG_MODS_HDMI_TO_CSI)
 static struct device_resource cam_resources[] = {
     {
         .name   = "rst_n",
@@ -742,6 +743,16 @@ static struct device devices[] = {
         .id   = MHB_CAM_DRIVER_ID,
     },
 #endif
+#if defined(CONFIG_MODS_HDMI_TO_CSI)
+    {
+        .type = DEVICE_TYPE_MHB_CAMERA_HW,
+        .name = "HDMI_TO_CSI",
+        .desc = "HDMI to CSI",
+        .resources = cam_resources,
+        .resource_count = ARRAY_SIZE(cam_resources),
+        .id   = MHB_CAM_DRIVER_ID,
+    },
+#endif
 #ifdef CONFIG_MODS_AUDIO_TFA9890
     {
         .type = DEVICE_TYPE_I2S_HW,
@@ -1085,6 +1096,10 @@ void board_initialize(void)
 #if defined(CONFIG_CAMERA_IMX219_PI)
     extern struct device_driver imx219_pi_mhb_camera_driver;
     device_register_driver(&imx219_pi_mhb_camera_driver);
+#endif
+#if defined(CONFIG_MODS_HDMI_TO_CSI)
+    extern struct device_driver hdmi_to_csi_camera_driver;
+    device_register_driver(&hdmi_to_csi_camera_driver);
 #endif
 #ifdef CONFIG_MODS_AUDIO_TFA9890
   extern struct device_driver tfa9890_i2s_direct_driver;

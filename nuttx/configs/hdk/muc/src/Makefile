@@ -134,6 +134,10 @@ ifeq ($(CONFIG_MODS_RAW_FLIR),y)
 CSRCS += flir_raw.c
 endif
 
+ifeq ($(CONFIG_MODS_HDMI_TO_CSI),y)
+CSRCS += hdmi_to_csi.c hdmi_to_csi_ctrls.c
+endif
+
 COBJS = $(CSRCS:.c=$(OBJEXT))
 
 SRCS = $(ASRCS) $(CSRCS)
