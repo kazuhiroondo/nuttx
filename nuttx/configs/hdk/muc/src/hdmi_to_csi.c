@@ -174,7 +174,7 @@ static int bridge_i2c_write_raw(uint16_t i2c_addr, uint16_t regaddr,
 static const struct camera_ext_frmival_node frmival_res0[] = {
     {
         .numerator = 1,
-        .denominator = 60,
+        .denominator = 30,
         .user_data = (void *)0,
     },
 };
@@ -266,7 +266,7 @@ static int _mhb_camera_get_csi_config(struct device *dev,
     mhb_camera_csi_config.framerate = roundf((float)(ival->denominator) /
                                              (float)(ival->numerator));
     mhb_camera_csi_config.tx_bits_per_lane = 600000000;
-    mhb_camera_csi_config.rx_bits_per_lane = 450000000;
+    mhb_camera_csi_config.rx_bits_per_lane = 600000000;
 
     *(struct mhb_cdsi_config **)config = &mhb_camera_csi_config;
 
