@@ -162,6 +162,18 @@ config MODS_HDMI_TO_CSI
 	depends on GREYBUS_CAMERA_EXT
 	select DEVICE_CORE
 
+if MODS_HDMI_TO_CSI
+choice
+	prompt "Select HDMI resolution"
+config MODS_HDMI_TO_CSI_1080P30
+	bool "1080p30"
+	default y
+config MODS_HDMI_TO_CSI_720P60
+	bool "720p60"
+	default n
+endchoice
+endif
+
 endif
 
 config MODS_HID_EXAMPLE
